@@ -31,14 +31,14 @@ end
    @nextMove = @pathFinder.pathWeights[@grueCurrentRoom.title][userPos.title].path.split[0]
  end
  
- 
+ #If grue is attacked then move him randomly to adjacent room
  def grueAttacked
    puts "Grue is attacked, drops something shiny, and flees to an adjacent room!"
    #drop crystal
    moveRandomly
  end
  
- 
+ # Moves grue randomly to an adjacent room
  def moveRandomly
    paths = @pathFinder.findAdjacentRooms(@grueCurrentRoom)
    grueMove(paths[rand(paths.length)])
@@ -64,7 +64,7 @@ end
         @grueCurrentRoom = @world.rooms[@grueCurrentRoom.west]
       end
     end
-  
+   determineNextMove(@world.user.currentRoom)
   end
  
 end
