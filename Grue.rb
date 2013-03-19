@@ -31,6 +31,29 @@ end
    @nextMove = @pathFinder.pathWeights[@grueCurrentRoom.title][userPos.title].path.split[0]
  end
  
+ # This method handles grue movement, he does not have to worry about blocked paths
+  def grueMove(direction)
+    case direction
+    when "North","n","north"
+      if(@grueCurrentRoom.north!= "0")
+        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.north]
+      end
+    when "East","e","east"
+      if(@grueCurrentRoom.east!="0")
+        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.east]
+      end
+    when "South","s","south"
+      if(@grueCurrentRoom.south!="0")
+        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.south] 
+      end
+    when "West","w","west"
+      if(@grueCurrentRoom.west!="0")
+        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.west]
+      end
+    end
+  
+  end
+ 
 end
 
 

@@ -10,8 +10,8 @@ class Game
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North", "quit"]
     
-    @user = User.new(userName)  
-    @world = World.new(xmlFilePath,@user)            
+    
+    @world = World.new(xmlFilePath)            
                   
   end
 
@@ -22,13 +22,27 @@ class Game
   end
 
   def loop
+    turns = 0
     while @command != "quit"
+      
+      if(turns%4==0 && turns!=0)
+        
+        puts "Resting"
+        @world.grue.grueMove(@world.grue.nextMove.to_s())
+       puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
+       @world.updateGrueNextMove
+         turns = turns + 1
+      else
+        @world.updateGrueNextMove
        puts "You are in room: "+ @world.user.currentRoom.title
        puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
        puts "Grue is moving "  + @world.grue.nextMove.to_s()
       get_command
-      @world.userMove(@command)
-     
+      if(@world.user.userMove(@command))
+        turns = turns + 1
+      end
+      end
+      
     end
   end
 end

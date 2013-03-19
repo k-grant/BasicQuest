@@ -3,8 +3,8 @@ require '../World.rb'
 
 class WorldTest < MiniTest::Unit::TestCase
   def setup
-    @user = User.new("Kevin")
-    @world = World.new("sampleLevel.xml",@user)
+    
+    @world = World.new("sampleLevel.xml")
     @testWorld = @world.rooms
   end
 
@@ -20,27 +20,27 @@ class WorldTest < MiniTest::Unit::TestCase
     @testWorld.length.times do
 
       if(@world.user.currentRoom.north!="0")
-        assert_equal @world.userMove("North"), true
+        assert_equal @world.user.userMove("North"), true
       else
-        assert_equal @world.userMove("North"), false
+        assert_equal @world.user.userMove("North"), false
       end
 
       if(@world.user.currentRoom.south!="0")
-        assert_equal @world.userMove("South"), true
+        assert_equal @world.user.userMove("South"), true
       else
-        assert_equal @world.userMove("South"), false
+        assert_equal @world.user.userMove("South"), false
       end
 
       if(@world.user.currentRoom.east!="0")
-        assert_equal @world.userMove("East"), true
+        assert_equal @world.user.userMove("East"), true
       else
-        assert_equal @world.userMove("East"), false
+        assert_equal @world.user.userMove("East"), false
       end
 
       if(@world.user.currentRoom.west!="0")
-        assert_equal @world.userMove("West"), true
+        assert_equal @world.user.userMove("West"), true
       else
-        assert_equal @world.userMove("West"), false
+        assert_equal @world.user.userMove("West"), false
       end
 
     end
