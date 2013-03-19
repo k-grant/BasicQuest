@@ -2,7 +2,7 @@ class User
  # Describes User behavior
  attr_accessor :name
  attr_accessor :crystals
-
+ attr_accessor :currentRoom
  
  def initialize(name)
    @name = name

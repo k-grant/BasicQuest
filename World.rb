@@ -1,10 +1,11 @@
 require 'rexml/document'
 include REXML
-require './Room.rb'
-require './User.rb'
+require_relative 'Room.rb'
+require_relative 'User.rb'
 class World
   
 attr_accessor :user
+attr_accessor :rooms
 
  # Describes world behavior
   def initialize(xmlFilePath,user)
@@ -32,6 +33,42 @@ attr_accessor :user
   def assignUserRandomRoom
     @hashkeys = @rooms.keys
     user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
+  end
+  
+  
+  # This method handles movement including user room migration and blocked path notifications.
+  def userMove(direction)
+    errorString = "Cant move that Way"
+    case direction
+    when North
+      if(user.currentRoom.north!=0)
+        user.currentRoom = @rooms[user.currentRoom.north]
+      else
+        puts errorString
+      end
+    when East
+      if(user.currentRoom.east!=0)
+        user.currentRoom = @rooms[user.currentRoom.east]
+      else
+        puts errorString
+      end
+    when South
+      if(user.currentRoom.south!=0)
+        user.currentRoom = @rooms[user.currentRoom.south]
+      else
+        puts errorString
+      end
+    when West
+      if(user.currentRoom.west!=0)
+        user.currentRoom = @rooms[user.currentRoom.west]
+      else
+        puts errorString
+      end
+    else
+      puts "Invalid Direction"
+    end
+    
+    
   end
  
  

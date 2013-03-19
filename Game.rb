@@ -1,12 +1,15 @@
 class Game
   attr_reader :command
 
-  def initialize(readin=STDIN, output=STDOUT)
+  def initialize(readin=STDIN, output=STDOUT, xmlFilePath,userName)
     @input = readin
     @output = output
     @command_list = ["north", "east", "west", 
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North", "quit"]
+    @world = World.new(xmlFilePath)
+    @user = User.new(userName)              
+                  
   end
 
   def get_command

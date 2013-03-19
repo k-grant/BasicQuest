@@ -1,0 +1,31 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Level>
+	<Room>
+		<Title North="0" East="Ochre" South="0" West="0">Vermilion</Title>
+	</Room>
+	<Room>
+		<Title North="Vermilion" East="Chartreuse" South="Ochre" West="0">Ochre</Title>
+	</Room>
+	<Room>
+		<Title North="Ochre" East="0" South="Emerald" West="0">Chartreuse</Title>
+	</Room>
+	<Room>
+		<Title North="0" East="Lavender" South="Aquamarine" West="Cobalt">Emerald</Title>
+	</Room>
+	<Room>
+		<Title North="0" East="Chartreuse" South="0" West="Burnt Sienna">Lavender</Title>
+	</Room>
+	<Room>
+		<Title North="0" East="0" South="Violet" West="Cobalt">Aquamarine</Title>
+	</Room>
+	<Room>
+		<Title North="0" East="Burnt Sienna" South="Burnt Sienna" West="Chartreuse">Violet</Title>
+	</Room>
+	<Room>
+		<Title North="Vermilion" East="0" South="Burnt Sienna" West="Vermilion">Cobalt</Title>
+	</Room>
+	<Room>
+		<Title North="Emerald" East="Lavender" South="0" West="0">Burnt Sienna</Title>
+	</Room>
+</Level>
