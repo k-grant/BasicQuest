@@ -63,9 +63,6 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     end
   end
   
-  
-  #
- 
 end
 
 #world = World.new("sampleLevel.xml")

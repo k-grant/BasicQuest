@@ -31,6 +31,19 @@ end
    @nextMove = @pathFinder.pathWeights[@grueCurrentRoom.title][userPos.title].path.split[0]
  end
  
+ 
+ def grueAttacked
+   puts "Grue is attacked, drops something shiny, and flees to an adjacent room!"
+   #drop crystal
+   moveRandomly
+ end
+ 
+ 
+ def moveRandomly
+   paths = @pathFinder.findAdjacentRooms(@grueCurrentRoom)
+   grueMove(paths[rand(paths.length)])
+ end
+ 
  # This method handles grue movement, he does not have to worry about blocked paths
   def grueMove(direction)
     case direction

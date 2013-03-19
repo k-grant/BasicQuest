@@ -21,7 +21,15 @@ class User
  # Method called when user is attacked, respawn will be handeled by the world
  def userAttacked
    @crystals = 0
+   assignUserRandomRoom
+   puts "You were attacked and died. You Respawned"
  end
+ 
+ def assignUserRandomRoom
+    @hashkeys = @world.rooms.keys
+    @currentRoom = @world.rooms[@hashkeys[rand(@hashkeys.length)]]
+  end
+ 
  
  # This method will check if the current room is the teleport room and notifies the user of such
   def checkIfTeleportRoom

@@ -30,16 +30,24 @@ class Game
         puts "Resting"
         @world.grue.grueMove(@world.grue.nextMove.to_s())
        puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
+       
+       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+         @world.user.userAttacked
+       end
+       
        @world.updateGrueNextMove
          turns = turns + 1
       else
         @world.updateGrueNextMove
        puts "You are in room: "+ @world.user.currentRoom.title
        puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
-       puts "Grue is moving "  + @world.grue.nextMove.to_s()
+
       get_command
       if(@world.user.userMove(@command))
         turns = turns + 1
+       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+         @world.grue.grueAttacked
+       end
       end
       end
       
