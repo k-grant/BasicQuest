@@ -22,7 +22,7 @@ class Grue
  
  # This method will set Grues location to the room farthest away from the users room
 def setFarRoom(userPos)
-  @grueCurrentRoom = @pathFinder.determineFarthestRoomFromUser(userPos).roomObject
+  @grueCurrentRoom = @pathFinder.determineFarthestRoomFromUser(userPos)
 end
  
  # Use some sort of shortest path algorithm to determine which move to make

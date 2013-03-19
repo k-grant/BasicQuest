@@ -11,7 +11,7 @@ class GameTest < MiniTest::Unit::TestCase
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North"]
     @input  = StringIO.new
-    @game   = Game.new(@input,"sampleLevel.xml","Kevin")
+    @game   = Game.new("sampleLevel.xml")
     @invalid_command_list = ["up", "down", "nor", "3", "do it",
                       "ding dong", "left", "right", "go down"]
   end

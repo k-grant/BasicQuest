@@ -39,6 +39,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     @user = User.new(self)
     @hashkeys = @rooms.keys
     @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
+    @user.checkIfTeleportRoom
   end
   
   #this method is for the initial spawn on Grue, We want to spawn him far away from the user

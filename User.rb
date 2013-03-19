@@ -30,12 +30,14 @@ class User
  def assignUserRandomRoom
     @hashkeys = @world.rooms.keys
     @currentRoom = @world.rooms[@hashkeys[rand(@hashkeys.length)]]
+     
   end
  
  
  # This method will check if the current room is the teleport room and notifies the user of such
   def checkIfTeleportRoom
     if(@currentRoom.isTeleportRoom)
+      
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
       puts "The #{@crystals} crystals you have collected are glowing."
       if(@crystals > 5)

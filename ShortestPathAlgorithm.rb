@@ -84,13 +84,17 @@ class ShortestPathAlgorithm
  def determineFarthestRoomFromUser(userPos)
    max =-999
    room = nil
-   @pathWeights[userPos.title].each{
+   @pathWeights.each{
      |key,value|
-        if(value.distance > max)
-          max = value.distance
-          room = value
+     value.each{
+       |key2,value2|
+       if(key2==userPos.title)
+        if(value2.distance > max)
+          max = value2.distance
+          room = @currentWorld.rooms[key]
         end
-     
+        end
+     }
    }
    return room
  end

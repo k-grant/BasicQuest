@@ -3,7 +3,7 @@ require_relative 'World.rb'
 class Game
   attr_reader :command
 
-  def initialize(readin=STDIN, output=STDOUT, xmlFilePath,userName)
+  def initialize(readin=STDIN, output=STDOUT, xmlFilePath)
     @input = readin
     @output = output
     # valid commands
@@ -13,7 +13,7 @@ class Game
     
     
     @world = World.new(xmlFilePath)            
-                  
+    loop    
   end
 
   def get_command
@@ -72,5 +72,4 @@ class Game
   end
 end
 
-game = Game.new("sampleLevel.xml","Kevin")
-game.loop
+
