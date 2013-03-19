@@ -18,7 +18,7 @@ attr_accessor :user
         |e| room = Room.new(e.text,e.attributes["North"],e.attributes["East"],e.attributes["South"],e.attributes["West"])
         @rooms[room.title] = room
      }
-     
+      
      assignUserRandomRoom
 
   end
