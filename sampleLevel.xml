@@ -2,7 +2,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level>
 	<Room>
-		<Title North="0" East="Ochre" South="0" West="0" isTeleportRoom="0">Vermilion</Title>
+		<Title North="0" East="Ochre" South="Aquamarine" West="0" isTeleportRoom="0">Vermilion</Title>
 	</Room>
 	<Room>
 		<Title North="Vermilion" East="Chartreuse" South="Ochre" West="0" isTeleportRoom="0">Ochre</Title>

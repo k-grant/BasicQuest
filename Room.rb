@@ -30,30 +30,42 @@ class Room
     @paths[3]
   end
   
-  ##############################
-  
- def returnAdjacentRooms
-   returnArray =[]
-   counter =0
-   if(@paths[0]!="0")
-     returnArray[counter]="north"
-     counter = counter +1
-    end
-       if(@paths[1]!="0")
-     returnArray[counter]="east"
-      counter = counter +1
-    end
-       if(@paths[2]!="0")
-     returnArray[counter]="south"
-      counter = counter +1
-    end
-       if(@paths[3]!="0")
-     returnArray[counter]="west"
-      counter = counter +1
+  def returnTitle(string)
+    case string
+    when "north"
+       @paths[0]
+    when "east"
+      @paths[1]
+    when "south"
+      @paths[2]
+    when "west"
+      @paths[3]
     end
     
-   return returnArray
-end
+  end
+  
+  ##############################
+ def returnAdjacentRooms
+      returnArray =Array.new
+      counter =0
+      if(@paths[0]!="0")
+        returnArray[counter]="north"
+      counter = counter +1
+      end
+      if(@paths[1]!="0")
+        returnArray[counter]="east"
+      counter = counter +1
+      end
+      if(@paths[2]!="0")
+        returnArray[counter]="south"
+      counter = counter +1
+      end
+      if(@paths[3]!="0")
+        returnArray[counter]="west"
+      counter = counter +1
+      end
+      return returnArray
+    end
 
     
  
