@@ -31,5 +31,5 @@ class Game
   end
 end
 
-game =  Game.new("sampleLevel.xml","Kevin")
+game = Game.new("sampleLevel.xml","Kevin")
 game.loop

@@ -1,9 +1,16 @@
 class Room
   attr_accessor :title
-  
-  def initialize(title, north, east, south, west)
+  attr_accessor :isTeleportRoom
+ 
+  def initialize(title, north, east, south, west ,isTeleportRoom)
     @title=title
     @paths = [north,east,south,west]
+     if(isTeleportRoom=="0")
+      @isTeleportRoom = false
+    else
+      @isTeleportRoom = true
+    end
+      
   end
   
   def north
