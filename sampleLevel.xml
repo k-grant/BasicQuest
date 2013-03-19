@@ -1,0 +1,67 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Level>
+	<Room>
+		<Title>Vermilion</Title>
+		<NorthPath>0</NorthPath>
+		<East>Ochre</East>
+		<SouthPath>0</SouthPath>
+		<West>0</West>
+	</Room>
+	<Room>
+		<Title>Ochre</Title>
+		<NorthPath>Vermilion</NorthPath>
+		<East>Chartreuse</East>
+		<SouthPath>Ochre</SouthPath>
+		<West>0</West>
+	</Room>
+	<Room>
+		<Title>Chartreuse</Title>
+		<NorthPath>Ochre</NorthPath>
+		<East>0</East>
+		<SouthPath>Emerald</SouthPath>
+		<West>0</West>
+	</Room>
+	<Room>
+		<Title>Emerald</Title>
+		<NorthPath>0</NorthPath>
+		<East>Lavender</East>
+		<SouthPath>Aquamarine</SouthPath>
+		<West>Cobalt</West>
+	</Room>
+	<Room>
+		<Title>Lavender</Title>
+		<NorthPath>0</NorthPath>
+		<East>Chartreuse</East>
+		<SouthPath>0</SouthPath>
+		<West>Burnt Sienna</West>
+	</Room>
+	<Room>
+		<Title>Aquamarine</Title>
+		<NorthPath>0</NorthPath>
+		<East>0</East>
+		<SouthPath>Violet</SouthPath>
+		<West>Cobalt</West>
+	</Room>
+	<Room>
+		<Title>Violet</Title>
+		<NorthPath>0</NorthPath>
+		<East>Burnt Sienna</East>
+		<SouthPath>Burnt Sienna</SouthPath>
+		<West>Chartreuse</West>
+	</Room>
+	<Room>
+		<Title>Cobalt</Title>
+		<NorthPath>Vermilion</NorthPath>
+		<East>0</East>
+		<SouthPath>Burnt Sienna</SouthPath>
+		<West>Vermilion</West>
+	</Room>
+	<Room>
+		<Title>Burnt Sienna</Title>
+		<NorthPath>Emerald</NorthPath>
+		<East>Lavender</East>
+		<SouthPath>0</SouthPath>
+		<West>0</West>
+	</Room>
+</Level>
