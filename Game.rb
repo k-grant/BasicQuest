@@ -23,11 +23,11 @@ class Game
 
   def loop
     turns = 0
-    while @command != "quit"
+    while (@command != "quit" && !@world.user.userWon)
       
       if(turns%4==0 && turns!=0)
         
-        puts "Resting"
+        puts "~~~~Resting~~~~"
         @world.grue.grueMove(@world.grue.nextMove.to_s())
        puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
        
@@ -47,10 +47,16 @@ class Game
         turns = turns + 1
        if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
          @world.grue.grueAttacked
+         @world.user.pickUpCrystal
+         puts "You now have #{@world.user.crystals} crystals!"
        end
       end
       end
       
+    end
+    
+    if(@world.user.userWon)
+      puts "Congratulations you win!!"
     end
   end
 end

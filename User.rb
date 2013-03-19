@@ -4,6 +4,7 @@ class User
  attr_accessor :crystals
  attr_accessor :currentRoom
   attr_accessor :world
+  attr_accessor :userWon
  
  # initialize name and number of crystals
  def initialize(worldReference)
@@ -11,6 +12,7 @@ class User
     @crystals =0
     @world = worldReference
     @currentRoom
+    @userWon = false
  end
  
  # Method called by User when he picks up a crystal
@@ -22,7 +24,7 @@ class User
  def userAttacked
    @crystals = 0
    assignUserRandomRoom
-   puts "You were attacked and died. You Respawned"
+   puts "You were attacked and died. You respawned but you lost all your crystals."
  end
  
  def assignUserRandomRoom
@@ -35,6 +37,10 @@ class User
   def checkIfTeleportRoom
     if(@currentRoom.isTeleportRoom)
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
+      puts "The #{@crystals} crystals you have collected are glowing."
+      if(@crystals == 5)
+        @userWon = true
+      end
     end
   end
  
