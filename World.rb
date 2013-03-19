@@ -2,26 +2,30 @@ require 'rexml/document'
 include REXML
 require_relative 'Room.rb'
 require_relative 'User.rb'
+require_relative 'Grue.rb'
+require_relative 'ShortestPathAlgorithm.rb'
+ # Describes world behavior
 class World
   
 attr_accessor :user
 attr_accessor :rooms
+attr_accessor :grue
 DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South={'south','s','South'}  West={'west','w','West'}   To Quit type 'quit'"
- # Describes world behavior
+
   def initialize(xmlFilePath,user)
     @user = user
     @rooms = Hash.new
-    
+    @grue = Grue.new(self)
     # Process the level which is saved as XML, the loop will create Room objects populate the @rooms hash for later use 
     xmldoc = Document.new(File.new(xmlFilePath))
     root = xmldoc.root
     xmldoc.elements.each("Level/Room/Title"){ 
         |e| room = Room.new(e.text,e.attributes["North"],e.attributes["East"],e.attributes["South"],e.attributes["West"],e.attributes["isTeleportRoom"])
-        #puts e.attributes("isTeleportRoom")
         @rooms[room.title] = room
      }
       
      assignUserRandomRoom
+     assignGrueToFarRoom
     puts DirectionalAdvice
   end
   
@@ -35,6 +39,12 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     @hashkeys = @rooms.keys
     @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
   end
+  
+  def assignGrueToFarRoom
+    @grue = Grue.new(self)
+    @grue.setFarRoom(@user.currentRoom)
+  end
+  
   
 # This method will check if the current room is the teleport room and notifies the user of such
   def checkIfTeleportRoom
@@ -103,8 +113,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
  
 end
 
-#world = World.new("sampleLevel.xml", User.new("Kevin"))
-#world.printRooms
+world = World.new("sampleLevel.xml", User.new("Kevin"))
 
 
 
