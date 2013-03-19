@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'stringio'
 require '../Game.rb'
+require '../World.rb'
+require '../User.rb'
 
 
 class GameTest < MiniTest::Unit::TestCase
@@ -9,7 +11,7 @@ class GameTest < MiniTest::Unit::TestCase
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North"]
     @input  = StringIO.new
-    @game   = Game.new(@input)
+    @game   = Game.new(@input,"sampleLevel.xml","Kevin")
     @invalid_command_list = ["up", "down", "nor", "3", "do it",
                       "ding dong", "left", "right", "go down"]
   end

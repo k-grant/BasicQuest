@@ -6,7 +6,7 @@ class World
   
 attr_accessor :user
 attr_accessor :rooms
-
+DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South={'south','s','South'}  West={'west','w','West'}   To Quit type 'quit'"
  # Describes world behavior
   def initialize(xmlFilePath,user)
     @user = user
@@ -21,7 +21,7 @@ attr_accessor :rooms
      }
       
      assignUserRandomRoom
-
+    puts DirectionalAdvice
   end
   
   #debug print method
@@ -38,9 +38,10 @@ attr_accessor :rooms
   
   # This method handles movement including user room migration and blocked path notifications.
   def userMove(direction)
-    errorString = "Cant move that Way"
+    errorString = "Cant move that Way, Try a different Path"
+    puts direction
     case direction
-    when "North"
+    when "North","n","north"
       if(@user.currentRoom.north!= "0")
         @user.currentRoom = @rooms[@user.currentRoom.north]
          return true;
@@ -48,7 +49,7 @@ attr_accessor :rooms
         puts errorString
         return false;
       end
-    when "East"
+    when "East","e","east"
       if(@user.currentRoom.east!="0")
         @user.currentRoom = @rooms[@user.currentRoom.east]
         return true;
@@ -56,7 +57,7 @@ attr_accessor :rooms
         puts errorString
         return false;
       end
-    when "South"
+    when "South","s","south"
       if(@user.currentRoom.south!="0")
         @user.currentRoom = @rooms[@user.currentRoom.south]
          return true;
@@ -64,7 +65,7 @@ attr_accessor :rooms
         puts errorString
         return false;
       end
-    when "West"
+    when "West","w","west"
       if(@user.currentRoom.west!="0")
         @user.currentRoom = @rooms[@user.currentRoom.west]
          return true;
@@ -72,8 +73,11 @@ attr_accessor :rooms
         puts errorString
         return false;
       end
+     when "quit"
+       exit
     else
-      puts "Invalid Direction"
+      puts "Invalid Direction / Invalid Statement"
+      puts DirectionalAdvice
       return false;
     end
     

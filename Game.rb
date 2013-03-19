@@ -1,3 +1,5 @@
+
+require_relative 'World.rb'
 class Game
   attr_reader :command
 
@@ -7,24 +9,27 @@ class Game
     @command_list = ["north", "east", "west", 
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North", "quit"]
-    @world = World.new(xmlFilePath)
-    @user = User.new(userName)              
+    
+    @user = User.new(userName)  
+    @world = World.new(xmlFilePath,@user)            
                   
   end
 
   def get_command
     temp_command = @input.gets
     temp_command.chomp!
-    if @command_list.index(temp_command) != nil then
      @command = temp_command
-    end
   end
 
   def loop
     while @command != "quit"
+       puts "You are in room: "+ @world.user.currentRoom.title
       get_command
-      puts @command      
+      @world.userMove(@command)
+     
     end
   end
 end
 
+game =  Game.new("sampleLevel.xml","Kevin")
+game.loop
