@@ -2,6 +2,8 @@
 
 class Vertex
 
+# This is a helper class used to describe a vertex, This is helpful when performing the shortest path algorithm
+
 attr_accessor :distance
 attr_accessor :path
 attr_accessor :roomObject

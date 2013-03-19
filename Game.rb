@@ -24,6 +24,8 @@ class Game
   def loop
     while @command != "quit"
        puts "You are in room: "+ @world.user.currentRoom.title
+       puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
+       puts "Grue is moving "  + @world.grue.nextMove.to_s()
       get_command
       @world.userMove(@command)
      
@@ -31,5 +33,5 @@ class Game
   end
 end
 
-#game = Game.new("sampleLevel.xml","Kevin")
-#game.loop
+game = Game.new("sampleLevel.xml","Kevin")
+game.loop

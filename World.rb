@@ -40,9 +40,18 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
   end
   
+  #this method is for the initial spawn on Grue, We want to spawn him far away from the user
   def assignGrueToFarRoom
     @grue = Grue.new(self)
     @grue.setFarRoom(@user.currentRoom)
+    updateGrueNextMove
+  end
+  
+  
+  #this will update Grues next move based on user position. Grue always moves to the room that is apart
+  # of the shortest path to the user
+  def updateGrueNextMove
+    @grue.determineNextMove(@user.currentRoom)
   end
   
   
@@ -52,6 +61,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
     end
   end
+  
   
   # This method handles movement including user room migration and blocked path notifications.
   # If a rooms direction is equal to 0, not another room, then that path is blocked.
@@ -106,6 +116,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     
     # Check if you are in the teleport Room
     checkIfTeleportRoom
+    updateGrueNextMove
     return wasAbleToMoveBool
     
     
@@ -113,7 +124,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
  
 end
 
-world = World.new("sampleLevel.xml", User.new("Kevin"))
+#world = World.new("sampleLevel.xml", User.new("Kevin"))
 
 
 

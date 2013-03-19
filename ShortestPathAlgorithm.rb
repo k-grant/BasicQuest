@@ -7,18 +7,21 @@ class ShortestPathAlgorithm
   attr_accessor :vertices
   attr_accessor :currentWorld
   attr_accessor :pathWeights
+  
  # Obtain a reference to the current world
  def initialize(worldReference)
    @currentWorld = worldReference
     @pathWeights = Hash.new
     @vertices = Hash.new
     
-
+   # this fills up the vertices hash initially
       @currentWorld.rooms.each {
      |key, value| 
      vertex = Vertex.new(key,value)
      @vertices[key] = vertex
      }
+     
+     #here @pathweights is created and that stores the shortest distance and path from each node to every other node
      fillPathWeights
     
     
@@ -26,9 +29,9 @@ class ShortestPathAlgorithm
  
  # This method will be ran once in the initialization phase
  # It will find the distance from each room to each other room
- # It runs in O(N^2) where N= vertices which is very slow but only needs to be ran once at the start of the game so it is acceptable.
  def fillPathWeights
 
+    #for each vertex, each level, find the shortest path to every node from that node and then add that data to pathweights
     hashkeys = @vertices.keys
     hashkeys.each do |n|
       @currentWorld.rooms.each {
@@ -44,8 +47,8 @@ class ShortestPathAlgorithm
     end
   end
  
+ # Here is the main method which finds the shortest distances for each node
  def returnShortestPath(from)
-   
    
    queue = Queue.new
    queue << from
@@ -69,6 +72,8 @@ class ShortestPathAlgorithm
 
   end
 
+
+# Returns adjacent Rooms, or adjacent directions leading to rooms
  def findAdjacentRooms(from)
    return from.returnAdjacentRooms
  end
