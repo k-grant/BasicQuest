@@ -20,7 +20,7 @@ class World
     @rooms.each {|key, value| puts "#{key} is #{value}" }
   end
   
- 
+  def 
  
  
  
