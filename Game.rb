@@ -6,6 +6,7 @@ class Game
   def initialize(readin=STDIN, output=STDOUT, xmlFilePath,userName)
     @input = readin
     @output = output
+    # valid commands
     @command_list = ["north", "east", "west", 
                   "south", "s", "e", "w",
                   "n", "North", "East", "South", "North", "quit"]
@@ -23,33 +24,43 @@ class Game
 
   def loop
     turns = 0
+    # loop runs as long as user hasnt won or quit yet
     while (@command != "quit" && !@world.user.userWon)
-      
+      puts "You are in room: "+ @world.user.currentRoom.title
+      # every 4 turns take a rest and move grue
       if(turns%4==0 && turns!=0)
-        
+        puts " "
         puts "~~~~Resting~~~~"
+        puts " "
+        turns =0
+        if(@world.grue.returnDistanceToUser==1)
+            puts "You hear a loud growl from one of the adjacent rooms!"
+       end
+        
         @world.grue.grueMove(@world.grue.nextMove.to_s())
-       puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
-       
        if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
          @world.user.userAttacked
        end
-       
-       @world.updateGrueNextMove
-         turns = turns + 1
+         
       else
+        
         @world.updateGrueNextMove
-       puts "You are in room: "+ @world.user.currentRoom.title
-       puts "Grue is at #{@world.grue.grueCurrentRoom.title}"
-
+       if(@world.grue.returnDistanceToUser==1)
+            puts "You hear a loud growl from one of the adjacent rooms!"
+       end
+      # => gets user input
       get_command
+      
+      # userMove returns boolean which shows if a valid path was taken
       if(@world.user.userMove(@command))
         turns = turns + 1
+        #handle attacks
        if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
          @world.grue.grueAttacked
          @world.user.pickUpCrystal
          puts "You now have #{@world.user.crystals} crystals!"
        end
+       
       end
       end
       

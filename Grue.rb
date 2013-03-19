@@ -33,7 +33,7 @@ end
  
  #If grue is attacked then move him randomly to adjacent room
  def grueAttacked
-   puts "Grue is attacked, drops something shiny, and flees to an adjacent room!"
+   puts "Grue is scared off, drops something shiny, and flees to an adjacent room!"
    #drop crystal
    moveRandomly
  end
@@ -42,6 +42,10 @@ end
  def moveRandomly
    paths = @pathFinder.findAdjacentRooms(@grueCurrentRoom)
    grueMove(paths[rand(paths.length)])
+ end
+ 
+ def returnDistanceToUser
+   return @world.grue.pathFinder.pathWeights[@world.grue.grueCurrentRoom.title][@world.user.currentRoom.title].distance
  end
  
  # This method handles grue movement, he does not have to worry about blocked paths

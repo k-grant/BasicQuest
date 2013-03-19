@@ -38,7 +38,7 @@ class User
     if(@currentRoom.isTeleportRoom)
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
       puts "The #{@crystals} crystals you have collected are glowing."
-      if(@crystals == 5)
+      if(@crystals > 5)
         @userWon = true
       end
     end
