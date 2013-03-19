@@ -13,6 +13,7 @@ class Room
       
   end
   
+  ## Accessor Methods for Paths
   def north
     @paths[0]
   end
@@ -29,6 +30,34 @@ class Room
     @paths[3]
   end
   
-
- # Describes world behavior
+  ##############################
+  
+ def returnAdjacentRooms
+   returnArray =[]
+   counter =0
+   if(@paths[0]!="0")
+     returnArray[counter]="north"
+     counter = counter +1
+    end
+       if(@paths[1]!="0")
+     returnArray[counter]="east"
+      counter = counter +1
+    end
+       if(@paths[2]!="0")
+     returnArray[counter]="south"
+      counter = counter +1
+    end
+       if(@paths[3]!="0")
+     returnArray[counter]="west"
+      counter = counter +1
+    end
+    
+   return returnArray
 end
+
+    
+ 
+
+ # Describes room behavior
+end
+

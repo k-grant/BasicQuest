@@ -33,7 +33,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
   # This method is for setting the user into a random room, upon initialization and upon getting attacked.
   def assignUserRandomRoom
     @hashkeys = @rooms.keys
-    user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
+    @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
   end
   
 # This method will check if the current room is the teleport room and notifies the user of such
