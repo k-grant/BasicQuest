@@ -2,66 +2,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Level>
 	<Room>
-		<Title>Vermilion</Title>
-		<NorthPath>0</NorthPath>
-		<East>Ochre</East>
-		<SouthPath>0</SouthPath>
-		<West>0</West>
+		<Title North="0" East="Ochre" South="0" West="0">Vermilion</Title>
 	</Room>
 	<Room>
-		<Title>Ochre</Title>
-		<NorthPath>Vermilion</NorthPath>
-		<East>Chartreuse</East>
-		<SouthPath>Ochre</SouthPath>
-		<West>0</West>
+		<Title North="Vermilion" East="Chartreuse" South="Ochre" West="0">Ochre</Title>
 	</Room>
 	<Room>
-		<Title>Chartreuse</Title>
-		<NorthPath>Ochre</NorthPath>
-		<East>0</East>
-		<SouthPath>Emerald</SouthPath>
-		<West>0</West>
+		<Title North="Ochre" East="0" South="Emerald" West="0">Chartreuse</Title>
 	</Room>
 	<Room>
-		<Title>Emerald</Title>
-		<NorthPath>0</NorthPath>
-		<East>Lavender</East>
-		<SouthPath>Aquamarine</SouthPath>
-		<West>Cobalt</West>
+		<Title North="0" East="Lavender" South="Aquamarine" West="Cobalt">Emerald</Title>
 	</Room>
 	<Room>
-		<Title>Lavender</Title>
-		<NorthPath>0</NorthPath>
-		<East>Chartreuse</East>
-		<SouthPath>0</SouthPath>
-		<West>Burnt Sienna</West>
+		<Title North="0" East="Chartreuse" South="0" West="Burnt Sienna">Lavender</Title>
 	</Room>
 	<Room>
-		<Title>Aquamarine</Title>
-		<NorthPath>0</NorthPath>
-		<East>0</East>
-		<SouthPath>Violet</SouthPath>
-		<West>Cobalt</West>
+		<Title North="0" East="0" South="Violet" West="Cobalt">Aquamarine</Title>
 	</Room>
 	<Room>
-		<Title>Violet</Title>
-		<NorthPath>0</NorthPath>
-		<East>Burnt Sienna</East>
-		<SouthPath>Burnt Sienna</SouthPath>
-		<West>Chartreuse</West>
+		<Title North="0" East="Burnt Sienna" South="Burnt Sienna" West="Chartreuse">Violet</Title>
 	</Room>
 	<Room>
-		<Title>Cobalt</Title>
-		<NorthPath>Vermilion</NorthPath>
-		<East>0</East>
-		<SouthPath>Burnt Sienna</SouthPath>
-		<West>Vermilion</West>
+		<Title North="Vermilion" East="0" South="Burnt Sienna" West="Vermilion">Cobalt</Title>
 	</Room>
 	<Room>
-		<Title>Burnt Sienna</Title>
-		<NorthPath>Emerald</NorthPath>
-		<East>Lavender</East>
-		<SouthPath>0</SouthPath>
-		<West>0</West>
+		<Title North="Emerald" East="Lavender" South="0" West="0">Burnt Sienna</Title>
 	</Room>
 </Level>
