@@ -40,32 +40,41 @@ attr_accessor :rooms
   def userMove(direction)
     errorString = "Cant move that Way"
     case direction
-    when North
-      if(user.currentRoom.north!=0)
-        user.currentRoom = @rooms[user.currentRoom.north]
+    when "North"
+      if(@user.currentRoom.north!= "0")
+        @user.currentRoom = @rooms[@user.currentRoom.north]
+         return true;
       else
         puts errorString
+        return false;
       end
-    when East
-      if(user.currentRoom.east!=0)
-        user.currentRoom = @rooms[user.currentRoom.east]
+    when "East"
+      if(@user.currentRoom.east!="0")
+        @user.currentRoom = @rooms[@user.currentRoom.east]
+        return true;
       else
         puts errorString
+        return false;
       end
-    when South
-      if(user.currentRoom.south!=0)
-        user.currentRoom = @rooms[user.currentRoom.south]
+    when "South"
+      if(@user.currentRoom.south!="0")
+        @user.currentRoom = @rooms[@user.currentRoom.south]
+         return true;
       else
         puts errorString
+        return false;
       end
-    when West
-      if(user.currentRoom.west!=0)
-        user.currentRoom = @rooms[user.currentRoom.west]
+    when "West"
+      if(@user.currentRoom.west!="0")
+        @user.currentRoom = @rooms[@user.currentRoom.west]
+         return true;
       else
         puts errorString
+        return false;
       end
     else
       puts "Invalid Direction"
+      return false;
     end
     
     
@@ -77,9 +86,7 @@ attr_accessor :rooms
  
 end
 
-world = World.new("sampleLevel.xml",User.new("Kevin"));
-world.printRooms
-puts world.user.currentRoom
+
 
 
 
