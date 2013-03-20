@@ -1,8 +1,7 @@
 require 'minitest/autorun'
 require 'stringio'
 require '../Game.rb'
-require '../World.rb'
-require '../User.rb'
+
 
 
 class GameTest < MiniTest::Unit::TestCase
@@ -14,29 +13,22 @@ class GameTest < MiniTest::Unit::TestCase
     @game   = Game.new("sampleLevel.xml")
     @invalid_command_list = ["up", "down", "nor", "3", "do it",
                       "ding dong", "left", "right", "go down"]
+    
   end
 
-  def test_equal_valid_commands
-   @command_list.each do|n|
-    provide_input(n);
-    @game.get_command
-      assert_equal n, @game.command
-    end
-   end
-   
-  def test_equal_invalid_commands
-   @invalid_command_list.each do|n|
-    provide_input(n);
-    @game.get_command
-      assert_equal nil, @game.command
-    end
+
+   # This method will run the game untill it is completed. The assert being true shows the game has ended successfully
+   # This is a good way of testing almost every single method in the program.
+  def test_game
+      @game.testLoop(@command_list)
+      assert(@game.world.user.userWon)
    end
    
    
 
   def provide_input(string)
       remember = @input.pos
-      @input << string
-      @input.pos = remember
+      STDIN << string
+      #@input.pos = remember
   end
 end

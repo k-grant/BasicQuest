@@ -2,7 +2,7 @@
 require_relative 'World.rb'
 class Game
   attr_reader :command
-
+attr_accessor :world
   def initialize(readin=STDIN, output=STDOUT, xmlFilePath)
     @input = readin
     @output = output
@@ -13,7 +13,7 @@ class Game
     
     
     @world = World.new(xmlFilePath)            
-    loop    
+      
   end
 
   def get_command
@@ -70,6 +70,65 @@ class Game
       puts "Congratulations you win!!"
     end
   end
+  
+  
+  
+  # I wrote this method in order to test the game. In Game Test it is ran and commands are given until the game is over
+  # this makes sure the game is winnable
+  
+  def testLoop(commandList)
+    turns = 0
+    @command = commandList.sample
+    # loop runs as long as user hasnt won or quit yet
+    while (@command != "quit" && !@world.user.userWon)
+      puts "You are in room: "+ @world.user.currentRoom.title
+      # every 4 turns take a rest and move grue
+      if(turns%4==0 && turns!=0)
+        puts " "
+        puts "~~~~Resting~~~~"
+        puts " "
+        turns =0
+        if(@world.grue.returnDistanceToUser==1)
+            puts "You hear a loud growl from one of the adjacent rooms!"
+       end
+        
+        @world.grue.grueMove(@world.grue.nextMove.to_s())
+       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+         @world.user.userAttacked
+       end
+         
+      else
+        
+        @world.updateGrueNextMove
+       if(@world.grue.returnDistanceToUser==1)
+            puts "You hear a loud growl from one of the adjacent rooms!"
+       end
+      # => gets user input
+      @command = commandList.sample
+      
+      # userMove returns boolean which shows if a valid path was taken
+      if(@world.user.userMove(@command))
+        turns = turns + 1
+        #handle attacks
+       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+         @world.grue.grueAttacked
+         @world.user.pickUpCrystal
+         puts "You now have #{@world.user.crystals} crystals!"
+       end
+       
+      end
+      end
+      
+    end
+    
+    if(@world.user.userWon)
+      puts "Congratulations you win!!"
+    end
+  end
+  
+  
+  
+  
 end
 
 
