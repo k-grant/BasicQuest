@@ -39,6 +39,7 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
     @user = User.new(self)
     @hashkeys = @rooms.keys
     @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
+    puts "You are in room: "+ @user.currentRoom.title
     @user.checkIfTeleportRoom
   end
   
@@ -46,23 +47,11 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
   def assignGrueToFarRoom
     @grue = Grue.new(self)
     @grue.setFarRoom(@user.currentRoom)
-    updateGrueNextMove
+    @grue.determine_next_move(@user.currentRoom)
   end
   
   
-  #this will update Grues next move based on user position. Grue always moves to the room that is apart
-  # of the shortest path to the user
-  def updateGrueNextMove
-    @grue.determineNextMove(@user.currentRoom)
-  end
   
-  
-# This method will check if the current room is the teleport room and notifies the user of such
-  def checkIfTeleportRoom
-    if(@user.currentRoom.isTeleportRoom)
-      puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
-    end
-  end
   
 end
 
