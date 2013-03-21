@@ -1,14 +1,14 @@
 class Room
 
-  attr_accessor :title,:isTeleportRoom
+  attr_accessor :title,:is_teleport_room
   
-  def initialize(title, north, east, south, west ,isTeleportRoom)
+  def initialize(title, north, east, south, west ,is_teleport_room)
     @title=title
     @paths = [north,east,south,west]
-    if(isTeleportRoom=="0")
-      @isTeleportRoom = false
+    if(is_teleport_room=="0")
+      @is_teleport_room = false
     else
-      @isTeleportRoom = true
+      @is_teleport_room = true
     end
 
   end
@@ -30,7 +30,7 @@ class Room
     @paths[3]
   end
 
-  def returnTitle(string)
+  def return_title(string)
     case string
     when "north"
       @paths[0]

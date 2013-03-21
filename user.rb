@@ -10,7 +10,7 @@ class User
   end
 
   # Method called by User when he picks up a crystal
-  def pickUpCrystal
+  def pick_up_crystal
     @crystals = crystals+1
     if(@crystals==1)
       puts "You now have #{@crystals} crystal!"
@@ -20,22 +20,21 @@ class User
   end
 
   # Method called when user is attacked, respawn will be handeled by the world
-  def userAttacked
+  def user_attacked
     @crystals = 0
-    assignUserRandomRoom
+    assign_user_random_room
     puts "You were attacked and died. You respawned but you lost all your crystals."
   end
 
-  def assignUserRandomRoom
+  def assign_user_random_room
     @hashkeys = @world.rooms.keys
     @currentRoom = @world.rooms[@hashkeys[rand(@hashkeys.length)]]
-    checkIfTeleportRoom
+    check_if_teleport_room
   end
 
   # This method will check if the current room is the teleport room and notifies the user of such
-  def checkIfTeleportRoom
-    if(@currentRoom.isTeleportRoom)
-
+  def check_if_teleport_room
+    if(@currentRoom.is_teleport_room)
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
       if(@crystals==1)
         puts "The crystal you collected is glowing."
@@ -51,12 +50,9 @@ class User
 
   # This method handles movement including user room migration and blocked path notifications.
   # If a rooms direction is equal to 0, not another room, then that path is blocked.
-  def userMove(direction)
+  def user_move(direction)
 
     errorString = "Cant move that Way, Try a different Path"
-    #set this bool to false or true depending on if path exists
-    # I set it up like this so that I could check if the next room, or the current room again, is the teleport Room before returning
-    # Also necessary to check for Grue proximity in each room
     wasAbleToMoveBool = false
 
     case direction
@@ -100,7 +96,7 @@ class User
     end
 
     puts "You are in room: "+ @currentRoom.title
-    checkIfTeleportRoom
+    check_if_teleport_room
 
     return wasAbleToMoveBool
 

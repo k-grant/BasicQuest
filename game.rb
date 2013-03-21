@@ -27,12 +27,12 @@ class Game
 
     get_command
 
-    while(!@world.user.userMove(@command))
+    while(!@world.user.user_move(@command))
       get_command
     end
     if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
       @world.grue.grueAttacked
-      @world.user.pickUpCrystal
+      @world.user.pick_up_crystal
     end
   end
 
@@ -40,7 +40,7 @@ class Game
     @world.grue.grue_close_check
     @world.grue.move_grue_to_user(@world.user.currentRoom)
     if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-      @world.user.userAttacked
+      @world.user.user_attacked
     end
   end
 

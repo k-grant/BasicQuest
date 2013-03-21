@@ -16,14 +16,14 @@ class Grue
   end
 
   # This method will set Grues location to the room farthest away from the users room.
-  def setFarRoom(userPos)
-    @grueCurrentRoom = @pathFinder.determineFarthestRoomFromUser(userPos)
+  def set_far_room(userPos)
+    @grueCurrentRoom = @pathFinder.determine_farthest_room_from_user(userPos)
   end
 
   # Use some sort of shortest path algorithm to determine which move to make
   # This will be the room that takes Grue closest to the user
   def determine_next_move(userPos)
-    @nextMove = @pathFinder.pathWeights[@grueCurrentRoom.title][userPos.title].path.split[0]
+    @nextMove = @pathFinder.path_weights[@grueCurrentRoom.title][userPos.title].path.split[0]
   end
 
   def move_grue_to_user(userPos)
@@ -38,12 +38,12 @@ class Grue
 
   # Moves grue randomly to an adjacent room.
   def moveRandomly
-    paths = @pathFinder.findAdjacentRooms(@grueCurrentRoom)
+    paths = @pathFinder.find_adjacent_rooms(@grueCurrentRoom)
     grue_move(paths[rand(paths.length)])
   end
 
   def returnDistanceToUser
-    return @world.grue.pathFinder.pathWeights[@world.grue.grueCurrentRoom.title][@world.user.currentRoom.title].distance
+    return @world.grue.pathFinder.path_weights[@world.grue.grueCurrentRoom.title][@world.user.currentRoom.title].distance
   end
 
   def grue_close_check

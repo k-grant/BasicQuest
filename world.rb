@@ -8,7 +8,7 @@ require_relative 'ShortestPathAlgorithm.rb'
 class World
   
 attr_accessor :user,:rooms,:grue
-DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South={'south','s','South'}  West={'west','w','West'}   To Quit type 'quit'"
+DIRECTIONAL_ADVICE ="North={'north','n','North'}  East={'east','e','East'}  South={'south','s','South'}  West={'west','w','West'}   To Quit type 'quit'"
 
   def initialize(xmlFilePath)
     @user = User.new(self)
@@ -22,29 +22,29 @@ DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South
         @rooms[room.title] = room
      }
       
-     assignUserRandomRoom
-     assignGrueToFarRoom
-    puts DirectionalAdvice
+     assign_user_random_room
+     assign_grue_far_room
+    puts DIRECTIONAL_ADVICE
   end
   
   #debug print method
-  def printRooms
-    @rooms.each {|key, value| puts "#{key} is #{value}" + "and teleportRoom =#{value.isTeleportRoom}" }
+  def print_rooms
+    @rooms.each {|key, value| puts "#{key} is #{value}" + "and teleportRoom =#{value.is_teleport_room}" }
   end
   
   # This method is for setting the user into a random room, upon initialization and upon getting attacked.
-  def assignUserRandomRoom
+  def assign_user_random_room
     @user = User.new(self)
     @hashkeys = @rooms.keys
     @user.currentRoom = @rooms[@hashkeys[rand(@hashkeys.length)]]
     puts "You are in room: "+ @user.currentRoom.title
-    @user.checkIfTeleportRoom
+    @user.check_if_teleport_room
   end
   
   #this method is for the initial spawn on Grue, We want to spawn him far away from the user
-  def assignGrueToFarRoom
+  def assign_grue_far_room
     @grue = Grue.new(self)
-    @grue.setFarRoom(@user.currentRoom)
+    @grue.set_far_room(@user.currentRoom)
     @grue.determine_next_move(@user.currentRoom)
   end
   
