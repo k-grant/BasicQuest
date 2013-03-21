@@ -1,4 +1,5 @@
-require_relative 'World.rb'
+require_relative 'world.rb'
+
 class Game
 
   attr_accessor :world,:input,:command,:command_list
