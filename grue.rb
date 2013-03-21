@@ -4,26 +4,26 @@ require 'thread'
 
 class Grue
 
-  attr_accessor :world,:pathFinder,:current_room,:nextMove
+  attr_accessor :world,:path_finder,:current_room,:next_move
   
   # Obtain a reference to the current world Grue lives in
-  # Create objects for the curent room, world, pathFinder ( which supports graph algorithms ), and the next move grue will make
+  # Create objects for the curent room, world, path_finder ( which supports graph algorithms ), and the next move grue will make
   def initialize(world_reference)
     @current_room =0
     @world=world_reference
-    @pathFinder = ShortestPathAlgorithm.new(world_reference)
-    @nextMove = " "
+    @path_finder = ShortestPathAlgorithm.new(world_reference)
+    @next_move = " "
   end
 
   # This method will set Grues location to the room farthest away from the users room.
   def set_far_room(userPos)
-    @current_room = @pathFinder.determine_farthest_room_from_user(userPos)
+    @current_room = @path_finder.determine_farthest_room_from_user(userPos)
   end
 
   # Use some sort of shortest path algorithm to determine which move to make
   # This will be the room that takes Grue closest to the user
   def determine_next_move(userPos)
-    @nextMove = @pathFinder.path_weights[@current_room.title][userPos.title].path.split[0]
+    @next_move = @path_finder.path_weights[@current_room.title][userPos.title].path.split[0]
   end
 
   def move_grue_to_user(userPos)
@@ -33,21 +33,21 @@ class Grue
   #If grue is attacked then move him randomly to adjacent room
   def grue_attacked
     puts "Grue is scared off, drops something shiny, and flees to an adjacent room!"
-    moveRandomly
+    move_randomly
   end
 
   # Moves grue randomly to an adjacent room.
-  def moveRandomly
-    paths = @pathFinder.find_adjacent_rooms(@current_room)
+  def move_randomly
+    paths = @path_finder.find_adjacent_rooms(@current_room)
     grue_move(paths[rand(paths.length)])
   end
 
-  def returnDistanceToUser
-    return @world.grue.pathFinder.path_weights[@world.grue.current_room.title][@world.user.current_room.title].distance
+  def return_distance_to_user
+    return @world.grue.path_finder.path_weights[@world.grue.current_room.title][@world.user.current_room.title].distance
   end
 
   def grue_close_check
-    if(@world.grue.returnDistanceToUser==1)
+    if(@world.grue.return_distance_to_user==1)
       puts "You hear a loud growl from one of the adjacent rooms!"
     end
   end

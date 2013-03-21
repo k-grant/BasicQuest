@@ -3,10 +3,10 @@ require_relative 'world.rb'
 class Game
 
   attr_accessor :world,:input,:command,:command_list
-  def initialize(readin=STDIN, output=STDOUT, xmlFilePath)
+  def initialize(readin=STDIN, output=STDOUT, xml_file_path)
     @input = readin
     @output = output
-    @world = World.new(xmlFilePath)
+    @world = World.new(xml_file_path)
     @command_list = []
   end
 
