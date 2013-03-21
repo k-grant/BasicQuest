@@ -22,7 +22,7 @@ class Game
 
   def user_turn
 
-    @world.grue.determine_next_move(@world.user.currentRoom)
+    @world.grue.determine_next_move(@world.user.current_room)
     @world.grue.grue_close_check
 
     get_command
@@ -30,16 +30,16 @@ class Game
     while(!@world.user.user_move(@command))
       get_command
     end
-    if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-      @world.grue.grueAttacked
+    if(@world.grue.current_room.title == @world.user.current_room.title)
+      @world.grue.grue_attacked
       @world.user.pick_up_crystal
     end
   end
 
   def grue_turn
     @world.grue.grue_close_check
-    @world.grue.move_grue_to_user(@world.user.currentRoom)
-    if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+    @world.grue.move_grue_to_user(@world.user.current_room)
+    if(@world.grue.current_room.title == @world.user.current_room.title)
       @world.user.user_attacked
     end
   end

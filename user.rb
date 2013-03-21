@@ -1,11 +1,11 @@
 class User
 
-  attr_accessor :crystals,:currentRoom,:world,:userWon
+  attr_accessor :crystals,:current_room,:world,:userWon
   # initialize name and number of crystals
-  def initialize(worldReference)
+  def initialize(world_reference)
     @crystals =0
-    @world = worldReference
-    @currentRoom=nil
+    @world = world_reference
+    @current_room=nil
     @userWon = false
   end
 
@@ -28,13 +28,13 @@ class User
 
   def assign_user_random_room
     @hashkeys = @world.rooms.keys
-    @currentRoom = @world.rooms[@hashkeys[rand(@hashkeys.length)]]
+    @current_room = @world.rooms[@hashkeys[rand(@hashkeys.length)]]
     check_if_teleport_room
   end
 
   # This method will check if the current room is the teleport room and notifies the user of such
   def check_if_teleport_room
-    if(@currentRoom.is_teleport_room)
+    if(@current_room.is_teleport_room)
       puts "~!~ This room has an ethereal quality. You notice the glowing dais in the center. ~!~"
       if(@crystals==1)
         puts "The crystal you collected is glowing."
@@ -42,7 +42,7 @@ class User
       if(@crystals>1)
         puts "The #{@crystals} crystals you have collected are glowing."
       end
-      if(@crystals > 5)
+      if(@crystals >= 5)
         @userWon = true
       end
     end
@@ -53,52 +53,52 @@ class User
   def user_move(direction)
 
     errorString = "Cant move that Way, Try a different Path"
-    wasAbleToMoveBool = false
+    able_to_move = false
 
     case direction
     when "North","n","north"
-      if(@currentRoom.north!= "0")
-        @currentRoom = @world.rooms[currentRoom.north]
-      wasAbleToMoveBool =true;
+      if(@current_room.north!= "0")
+        @current_room = @world.rooms[current_room.north]
+      able_to_move =true;
       else
         puts errorString
-      wasAbleToMoveBool =false;
+      able_to_move =false;
       end
     when "East","e","east"
-      if(@currentRoom.east!="0")
-        @currentRoom = @world.rooms[currentRoom.east]
-      wasAbleToMoveBool =true;
+      if(@current_room.east!="0")
+        @current_room = @world.rooms[current_room.east]
+      able_to_move =true;
       else
         puts errorString
-      wasAbleToMoveBool =false;
+      able_to_move =false;
       end
     when "South","s","south"
-      if(@currentRoom.south!="0")
-        @currentRoom = @world.rooms[currentRoom.south]
-      wasAbleToMoveBool =true;
+      if(@current_room.south!="0")
+        @current_room = @world.rooms[current_room.south]
+      able_to_move =true;
       else
         puts errorString
-      wasAbleToMoveBool =false;
+      able_to_move =false;
       end
     when "West","w","west"
-      if(@currentRoom.west!="0")
-        @currentRoom = @world.rooms[currentRoom.west]
-      wasAbleToMoveBool =true;
+      if(@current_room.west!="0")
+        @current_room = @world.rooms[current_room.west]
+      able_to_move =true;
       else
         puts errorString
-      wasAbleToMoveBool =false;
+      able_to_move =false;
       end
     when "quit"
       exit
     else
       puts "Invalid Direction / Invalid Statement"
-      wasAbleToMoveBool =false;
+      able_to_move =false;
     end
 
-    puts "You are in room: "+ @currentRoom.title
+    puts "You are in room: "+ @current_room.title
     check_if_teleport_room
 
-    return wasAbleToMoveBool
+    return able_to_move
 
   end
 

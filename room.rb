@@ -45,7 +45,7 @@ class Room
   end
 
   ##############################
-  def returnAdjacentRooms
+  def return_adjacent_rooms
     returnArray =Array.new
     counter =0
     if(@paths[0]!="0")

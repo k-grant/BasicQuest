@@ -4,26 +4,26 @@ require 'thread'
 
 class Grue
 
-  attr_accessor :world,:pathFinder,:grueCurrentRoom,:nextMove
+  attr_accessor :world,:pathFinder,:current_room,:nextMove
   
   # Obtain a reference to the current world Grue lives in
   # Create objects for the curent room, world, pathFinder ( which supports graph algorithms ), and the next move grue will make
-  def initialize(worldReference)
-    @grueCurrentRoom =0
-    @world=worldReference
-    @pathFinder = ShortestPathAlgorithm.new(worldReference)
+  def initialize(world_reference)
+    @current_room =0
+    @world=world_reference
+    @pathFinder = ShortestPathAlgorithm.new(world_reference)
     @nextMove = " "
   end
 
   # This method will set Grues location to the room farthest away from the users room.
   def set_far_room(userPos)
-    @grueCurrentRoom = @pathFinder.determine_farthest_room_from_user(userPos)
+    @current_room = @pathFinder.determine_farthest_room_from_user(userPos)
   end
 
   # Use some sort of shortest path algorithm to determine which move to make
   # This will be the room that takes Grue closest to the user
   def determine_next_move(userPos)
-    @nextMove = @pathFinder.path_weights[@grueCurrentRoom.title][userPos.title].path.split[0]
+    @nextMove = @pathFinder.path_weights[@current_room.title][userPos.title].path.split[0]
   end
 
   def move_grue_to_user(userPos)
@@ -31,19 +31,19 @@ class Grue
   end
 
   #If grue is attacked then move him randomly to adjacent room
-  def grueAttacked
+  def grue_attacked
     puts "Grue is scared off, drops something shiny, and flees to an adjacent room!"
     moveRandomly
   end
 
   # Moves grue randomly to an adjacent room.
   def moveRandomly
-    paths = @pathFinder.find_adjacent_rooms(@grueCurrentRoom)
+    paths = @pathFinder.find_adjacent_rooms(@current_room)
     grue_move(paths[rand(paths.length)])
   end
 
   def returnDistanceToUser
-    return @world.grue.pathFinder.path_weights[@world.grue.grueCurrentRoom.title][@world.user.currentRoom.title].distance
+    return @world.grue.pathFinder.path_weights[@world.grue.current_room.title][@world.user.current_room.title].distance
   end
 
   def grue_close_check
@@ -56,23 +56,23 @@ class Grue
   def grue_move(direction)
     case direction
     when "North","n","north"
-      if(@grueCurrentRoom.north!= "0")
-        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.north]
+      if(@current_room.north!= "0")
+        @current_room = @world.rooms[@current_room.north]
       end
     when "East","e","east"
-      if(@grueCurrentRoom.east!="0")
-        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.east]
+      if(@current_room.east!="0")
+        @current_room = @world.rooms[@current_room.east]
       end
     when "South","s","south"
-      if(@grueCurrentRoom.south!="0")
-        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.south]
+      if(@current_room.south!="0")
+        @current_room = @world.rooms[@current_room.south]
       end
     when "West","w","west"
-      if(@grueCurrentRoom.west!="0")
-        @grueCurrentRoom = @world.rooms[@grueCurrentRoom.west]
+      if(@current_room.west!="0")
+        @current_room = @world.rooms[@current_room.west]
       end
     end
-    determine_next_move(@world.user.currentRoom)
+    determine_next_move(@world.user.current_room)
   end
 
 end

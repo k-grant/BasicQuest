@@ -48,25 +48,25 @@ class UserTest < MiniTest::Unit::TestCase
   def test_move_user_around
     @world.rooms.length.times do
 
-      if(@world.user.currentRoom.north!="0")
+      if(@world.user.current_room.north!="0")
         assert_equal @world.user.user_move("North"), true
       else
         assert_equal @world.user.user_move("North"), false
       end
 
-      if(@world.user.currentRoom.south!="0")
+      if(@world.user.current_room.south!="0")
         assert_equal @world.user.user_move("South"), true
       else
         assert_equal @world.user.user_move("South"), false
       end
 
-      if(@world.user.currentRoom.east!="0")
+      if(@world.user.current_room.east!="0")
         assert_equal @world.user.user_move("East"), true
       else
         assert_equal @world.user.user_move("East"), false
       end
 
-      if(@world.user.currentRoom.west!="0")
+      if(@world.user.current_room.west!="0")
         assert_equal @world.user.user_move("West"), true
       else
         assert_equal @world.user.user_move("West"), false

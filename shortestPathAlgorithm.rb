@@ -70,7 +70,7 @@ class ShortestPathAlgorithm
 
   # Returns adjacent Rooms, or adjacent directions leading to rooms
   def find_adjacent_rooms(from)
-    return from.returnAdjacentRooms
+    return from.return_adjacent_rooms
   end
 
   # This method will determine which room to spawn Grue that is farthest from user
