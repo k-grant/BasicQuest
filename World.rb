@@ -7,9 +7,7 @@ require_relative 'ShortestPathAlgorithm.rb'
  # Describes world behavior
 class World
   
-attr_accessor :user
-attr_accessor :rooms
-attr_accessor :grue
+attr_accessor :user,:rooms,:grue
 DirectionalAdvice ="North={'north','n','North'}  East={'east','e','East'}  South={'south','s','South'}  West={'west','w','West'}   To Quit type 'quit'"
 
   def initialize(xmlFilePath)
