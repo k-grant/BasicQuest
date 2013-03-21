@@ -1,134 +1,73 @@
-
 require_relative 'World.rb'
 class Game
-  attr_reader :command
-attr_accessor :world
+
+  attr_accessor :world,:input,:command,:command_list
   def initialize(readin=STDIN, output=STDOUT, xmlFilePath)
     @input = readin
     @output = output
-    # valid commands
-    @command_list = ["north", "east", "west", 
-                  "south", "s", "e", "w",
-                  "n", "North", "East", "South", "North", "quit"]
-    
-    
-    @world = World.new(xmlFilePath)            
-      
+    @world = World.new(xmlFilePath)
+    @command_list = []
   end
 
   def get_command
-    temp_command = @input.gets
-    temp_command.chomp!
-     @command = temp_command
+    if(@command_list.length==0)
+      temp_command = @input.gets
+      temp_command.chomp!
+      @command = temp_command
+    else
+      @command = @command_list.sample
+    end
+  end
+
+  def user_turn
+
+    @world.grue.determine_next_move(@world.user.currentRoom)
+    @world.grue.grue_close_check
+
+    get_command
+
+    while(!@world.user.userMove(@command))
+      get_command
+    end
+    if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+      @world.grue.grueAttacked
+      @world.user.pickUpCrystal
+    end
+  end
+
+  def grue_turn
+    @world.grue.grue_close_check
+    @world.grue.move_grue_to_user(@world.user.currentRoom)
+    if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
+      @world.user.userAttacked
+    end
+  end
+
+  def resting_turn
+    puts " "
+    puts "~~~~Resting~~~~"
+    puts " "
   end
 
   def loop
     turns = 0
-    # loop runs as long as user hasnt won or quit yet
+    # Game loop runs as long as user hasnt won or quit yet.
     while (@command != "quit" && !@world.user.userWon)
-      puts "You are in room: "+ @world.user.currentRoom.title
-      # every 4 turns take a rest and move grue
+      # Every 4 turns take a rest and move grue.
       if(turns%4==0 && turns!=0)
-        puts " "
-        puts "~~~~Resting~~~~"
-        puts " "
+        resting_turn
         turns =0
-        if(@world.grue.returnDistanceToUser==1)
-            puts "You hear a loud growl from one of the adjacent rooms!"
-       end
-        
-        @world.grue.grueMove(@world.grue.nextMove.to_s())
-       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-         @world.user.userAttacked
-       end
-         
+        grue_turn
       else
-        
-        @world.updateGrueNextMove
-       if(@world.grue.returnDistanceToUser==1)
-            puts "You hear a loud growl from one of the adjacent rooms!"
-       end
-      # => gets user input
-      get_command
-      
-      # userMove returns boolean which shows if a valid path was taken
-      if(@world.user.userMove(@command))
-        turns = turns + 1
-        #handle attacks
-       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-         @world.grue.grueAttacked
-         @world.user.pickUpCrystal
-         puts "You now have #{@world.user.crystals} crystals!"
-       end
-       
+        user_turn
+      turns= turns+1
       end
-      end
-      
     end
-    
-    if(@world.user.userWon)
-      puts "Congratulations you win!!"
-    end
-  end
-  
-  
-  
-  # I wrote this method in order to test the game. In Game Test it is ran and commands are given until the game is over
-  # this makes sure the game is winnable
-  
-  def testLoop(commandList)
-    turns = 0
-    @command = commandList.sample
-    # loop runs as long as user hasnt won or quit yet
-    while (@command != "quit" && !@world.user.userWon)
-      puts "You are in room: "+ @world.user.currentRoom.title
-      # every 4 turns take a rest and move grue
-      if(turns%4==0 && turns!=0)
-        puts " "
-        puts "~~~~Resting~~~~"
-        puts " "
-        turns =0
-        if(@world.grue.returnDistanceToUser==1)
-            puts "You hear a loud growl from one of the adjacent rooms!"
-       end
-        
-        @world.grue.grueMove(@world.grue.nextMove.to_s())
-       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-         @world.user.userAttacked
-       end
-         
-      else
-        
-        @world.updateGrueNextMove
-       if(@world.grue.returnDistanceToUser==1)
-            puts "You hear a loud growl from one of the adjacent rooms!"
-       end
-      # => gets user input
-      @command = commandList.sample
-      
-      # userMove returns boolean which shows if a valid path was taken
-      if(@world.user.userMove(@command))
-        turns = turns + 1
-        #handle attacks
-       if(@world.grue.grueCurrentRoom.title == @world.user.currentRoom.title)
-         @world.grue.grueAttacked
-         @world.user.pickUpCrystal
-         puts "You now have #{@world.user.crystals} crystals!"
-       end
-       
-      end
-      end
-      
-    end
-    
-    if(@world.user.userWon)
-      puts "Congratulations you win!!"
-    end
-  end
-  
-  
-  
-  
-end
 
+    if(@world.user.userWon)
+      puts "Congratulations you win!!"
+    end
+  end
+
+end
 

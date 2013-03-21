@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require '../World.rb'
+require '../world.rb'
 
 class WorldTest < MiniTest::Unit::TestCase
   def setup

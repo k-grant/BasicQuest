@@ -1,5 +1,5 @@
-require_relative 'Vertex.rb'
-require_relative 'ShortestPathAlgorithm.rb'
+require_relative 'vertex.rb'
+require_relative 'shortestPathAlgorithm.rb'
 require 'thread'
 
 class Grue

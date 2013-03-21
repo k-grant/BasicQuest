@@ -1,39 +1,38 @@
 require 'minitest/autorun'
 require 'stringio'
-require '../World.rb'
-
+require '../world.rb'
 
 class UserTest < MiniTest::Unit::TestCase
   def setup
-    @world = World.new("sampleLevel.xml")  
+    @world = World.new("sampleLevel.xml")
   end
 
   def test_initialize
 
-      assert_equal @world.user.crystals,0
-    
-   end
-   
+    assert_equal @world.user.crystals,0
+
+  end
+
   def test_crystalPickUp
     @world.user.pickUpCrystal
     assert_equal @world.user.crystals,1
     @world.user.pickUpCrystal
     assert_equal @world.user.crystals,2
-   @world.user.userAttacked
-   end
-   
+    @world.user.userAttacked
+  end
+
   def test_crystalDrop
-     @world.user.pickUpCrystal
+    @world.user.pickUpCrystal
     @world.user.userAttacked
     assert_equal @world.user.crystals,0
   end
-  
+
   def test_pick_up_attacked
-       @world.user.pickUpCrystal
+    @world.user.pickUpCrystal
     assert_equal @world.user.crystals,1
     @world.user.pickUpCrystal
     assert_equal @world.user.crystals,2
-        @world.user.pickUpCrystal
+    @world.user.pickUpCrystal
     assert_equal @world.user.crystals,3
     @world.user.pickUpCrystal
     assert_equal @world.user.crystals,4
@@ -42,8 +41,8 @@ class UserTest < MiniTest::Unit::TestCase
     @world.user.userAttacked
     assert_equal @world.user.crystals,0
   end
-  
-    # This test method will make sure valid paths return true and invalid paths return false
+
+  # This test method will make sure valid paths return true and invalid paths return false
   # The tests are run for every direction and are ran as many times as there are rooms in order
   # to transverse most of the map
   def test_move_user_around
@@ -76,5 +75,5 @@ class UserTest < MiniTest::Unit::TestCase
     end
 
   end
-  
+
 end

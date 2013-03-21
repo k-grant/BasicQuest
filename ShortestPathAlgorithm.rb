@@ -1,4 +1,4 @@
-require_relative 'Vertex.rb'
+require_relative 'vertex.rb'
 require 'thread'
 
 class ShortestPathAlgorithm
