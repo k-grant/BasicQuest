@@ -61,7 +61,7 @@ class Game
         grue_turn
       else
         user_turn
-      turns= turns+1
+        turns= turns+1
       end
     end
 
